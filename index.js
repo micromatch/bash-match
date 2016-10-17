@@ -38,7 +38,7 @@ function bash(str, pattern, options) {
   }
 
   if (!/echo/.test(cmd)) {
-    cmd = `shopt -s extglob && shopt -s globstar && if [[ ${str} == ${pattern} ]]; then echo true; fi`;
+    cmd = 'IFS=$"\n"; shopt -s extglob && shopt -s globstar; if [[ "' + str + '" = ' + pattern + ' ]]; then echo true; fi';
   }
 
   try {
@@ -112,7 +112,7 @@ bash.match = function(list, pattern, options) {
  */
 
 function toString(buf) {
-  return buf ? buf.toString().trim() : null;
+  return (buf && buf.toString() || '').trim();
 }
 
 /**
