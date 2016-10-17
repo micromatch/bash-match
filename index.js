@@ -82,9 +82,6 @@ bash.isMatch = function(fixture, pattern, options) {
  *
  * ```js
  * var bash = require('bash-match');
- * console.log(bash('foo', 'f*'));
- * //=> true
- *
  * console.log(bash.match(['foo', 'bar'], 'b*'));
  * //=> ['bar']
  * ```

@@ -16,6 +16,71 @@ $ npm install --save bash-match
 var bash-match = require('bash-match');
 ```
 
+## API
+
+### [bash](index.js#L27)
+
+Returns true if `str` matches the given `pattern`.
+
+**Example**
+
+```js
+var bash = require('bash-match');
+console.log(bash('foo', 'f*'));
+//=> true
+
+console.log(bash('foo', 'b*'));
+//=> false
+```
+
+**Params**
+
+* `str` **{String}**
+* `pattern` **{String}**
+* `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
+* `returns` **{Boolean}**
+
+### [.isMatch](index.js#L75)
+
+Returns true if `str` matches the given `pattern`. Alias for the [main export](#bash).
+
+**Example**
+
+```js
+var bash = require('bash-match');
+console.log(bash.isMatch('foo', 'f*'));
+//=> true
+
+console.log(bash.isMatch('foo', 'b*'));
+//=> false
+```
+
+**Params**
+
+* `str` **{String}**
+* `pattern` **{String}**
+* `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
+* `returns` **{Boolean}**
+
+### [.match](index.js#L96)
+
+Takes a `list` of strings and a glob `pattern`, and returns an array of strings that match the pattern.
+
+**Example**
+
+```js
+var bash = require('bash-match');
+console.log(bash.match(['foo', 'bar'], 'b*'));
+//=> ['bar']
+```
+
+**Params**
+
+* `array` **{Array}**: List of strings to match
+* `pattern` **{String}**: Glob pattern
+* `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
+* `returns` **{Boolean}**
+
 ## About
 
 ### Contributing
