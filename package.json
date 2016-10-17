@@ -1,0 +1,53 @@
+{
+  "name": "bash-match",
+  "description": "Match strings using bash. Does not work on windows, and does not read from the file system. This library requires that Bash 4.3 or higher is installed and is mostly used for checking parity in unit tests.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/bash-match",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/bash-match",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/bash-match/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "cross-spawn": "^4.0.2",
+    "fs-exists-sync": "^0.1.0",
+    "is-windows": "^0.2.0"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.11",
+    "mocha": "^3.1.2"
+  },
+  "keywords": [
+    "bash",
+    "generategenerator",
+    "match"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "reflinks": [
+      "verb",
+      "verb-generate-readme"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  }
+}
