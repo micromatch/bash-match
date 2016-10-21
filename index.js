@@ -2,7 +2,9 @@
 
 var spawn = require('cross-spawn');
 var exists = require('fs-exists-sync');
+var extend = require('extend-shallow');
 var isWindows = require('is-windows');
+var isExtglob = require('is-extglob');
 var bashPath;
 
 /**
@@ -32,24 +34,20 @@ function bash(str, pattern, options) {
     throw new TypeError('expected a string');
   }
 
-  var cmd = pattern;
   if (isWindows()) {
     throw new Error('bash-match does not work on windows');
   }
 
-  if (!/echo/.test(cmd)) {
-    cmd = 'IFS=$"\n"; shopt -s extglob && shopt -s globstar; if [[ "' + str + '" = ' + pattern + ' ]]; then echo true; fi';
-  }
-
   try {
-    var res = spawn.sync(getBashPath(), ['-c', cmd], options);
+    var opts = createOptions(pattern, options);
+    var res = spawn.sync(getBashPath(), cmd(str, pattern, opts), opts);
     var err = toString(res.stderr);
     if (err) {
-      return handleError(err, options);
+      return handleError(err, opts);
     }
     return !!toString(res.stdout);
   } catch (err) {
-    return handleError(err, options);
+    return handleError(err, opts);
   }
 }
 
@@ -108,6 +106,23 @@ bash.match = function(list, pattern, options) {
 };
 
 /**
+ * Create the command to use
+ */
+
+function cmd(str, pattern, options) {
+  var valid = ['dotglob', 'extglob', 'failglob', 'globstar', 'nocaseglob', 'nullglob'];
+  var args = [];
+
+  for (var key in options) {
+    if (options.hasOwnProperty(key) && valid.indexOf(key) !== -1) {
+      args.push('-O', key);
+    }
+  }
+  args.push('-c', 'IFS=$"\n"; if [[ "' + str + '" = ' + pattern + ' ]]; then echo true; fi');
+  return args;
+}
+
+/**
  * Stringify `buf`
  */
 
@@ -124,6 +139,26 @@ function handleError(err, options) {
     throw err;
   }
   return false;
+}
+
+/**
+ * Shallow clone and create options
+ */
+
+function createOptions(pattern, options) {
+  if (options && options.normalized === true) return options;
+  var opts = extend({cwd: process.cwd()}, options);
+  if (opts.nocase === true) opts.nocaseglob = true;
+  if (opts.nonull === true) opts.nullglob = true;
+  if (opts.dot === true) opts.dotglob = true;
+  if (!opts.hasOwnProperty('globstar') && pattern.indexOf('**') !== -1) {
+    opts.globstar = true;
+  }
+  if (!opts.hasOwnProperty('extglob') && isExtglob(pattern)) {
+    opts.extglob = true;
+  }
+  opts.normalized = true;
+  return opts;
 }
 
 /**
