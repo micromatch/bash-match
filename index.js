@@ -1,7 +1,7 @@
 'use strict';
 
+var fs = require('fs');
 var spawn = require('cross-spawn');
-var exists = require('fs-exists-sync');
 var extend = require('extend-shallow');
 var isWindows = require('is-windows');
 var isExtglob = require('is-extglob');
@@ -168,9 +168,9 @@ function createOptions(pattern, options) {
 
 function getBashPath() {
   if (bashPath) return bashPath;
-  if (exists('/usr/local/bin/bash')) {
+  if (fs.existsSync('/usr/local/bin/bash')) {
     bashPath = '/usr/local/bin/bash';
-  } else if (exists('/bin/bash')) {
+  } else if (fs.existsSync('/bin/bash')) {
     bashPath = '/bin/bash';
   } else {
     bashPath = 'bash';

@@ -14,7 +14,7 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.0"
   },
   "scripts": {
     "test": "mocha"
@@ -22,7 +22,6 @@
   "dependencies": {
     "cross-spawn": "^5.1.0",
     "extend-shallow": "^2.0.1",
-    "fs-exists-sync": "^0.1.0",
     "is-extglob": "^2.1.1",
     "is-windows": "^1.0.0"
   },
@@ -47,9 +46,9 @@
     "related": {
       "list": [
         "bash-glob",
+        "braces",
         "micromatch",
-        "nanomatch",
-        "braces"
+        "nanomatch"
       ]
     },
     "lint": {
