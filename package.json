@@ -20,19 +20,19 @@
     "test": "mocha"
   },
   "dependencies": {
-    "cross-spawn": "^4.0.2",
+    "cross-spawn": "^5.1.0",
     "extend-shallow": "^2.0.1",
     "fs-exists-sync": "^0.1.0",
-    "is-extglob": "^2.1.0",
-    "is-windows": "^0.2.0"
+    "is-extglob": "^2.1.1",
+    "is-windows": "^1.0.0"
   },
   "devDependencies": {
-    "gulp-format-md": "^0.1.11",
-    "mocha": "^3.1.2"
+    "gulp-format-md": "^0.1.12",
+    "mocha": "^3.3.0"
   },
   "keywords": [
     "bash",
-    "generategenerator",
+    "glob",
     "match"
   ],
   "verb": {
