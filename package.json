@@ -44,10 +44,14 @@
     "plugins": [
       "gulp-format-md"
     ],
-    "reflinks": [
-      "verb",
-      "verb-generate-readme"
-    ],
+    "related": {
+      "list": [
+        "bash-glob",
+        "micromatch",
+        "nanomatch",
+        "braces"
+      ]
+    },
     "lint": {
       "reflinks": true
     }

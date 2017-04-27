@@ -1,4 +1,4 @@
-# bash-match [![NPM version](https://img.shields.io/npm/v/bash-match.svg?style=flat)](https://www.npmjs.com/package/bash-match) [![NPM downloads](https://img.shields.io/npm/dm/bash-match.svg?style=flat)](https://npmjs.org/package/bash-match) [![Build Status](https://img.shields.io/travis/jonschlinkert/bash-match.svg?style=flat)](https://travis-ci.org/jonschlinkert/bash-match)
+# bash-match [![NPM version](https://img.shields.io/npm/v/bash-match.svg?style=flat)](https://www.npmjs.com/package/bash-match) [![NPM monthly downloads](https://img.shields.io/npm/dm/bash-match.svg?style=flat)](https://npmjs.org/package/bash-match)  [![NPM total downloads](https://img.shields.io/npm/dt/bash-match.svg?style=flat)](https://npmjs.org/package/bash-match) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/bash-match.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/bash-match)
 
 > Match strings using bash. Does not work on windows, and does not read from the file system. This library requires that Bash 4.3 or higher is installed and is mostly used for checking parity in unit tests.
 
@@ -10,17 +10,30 @@ Install with [npm](https://www.npmjs.com/):
 $ npm install --save bash-match
 ```
 
+Install with [yarn](https://yarnpkg.com):
+
+```sh
+$ yarn add bash-match
+```
+
 ## Usage
 
 ```js
-var bash-match = require('bash-match');
+var readme = require('bash-match');
 ```
 
 ## API
 
-### [bash](index.js#L27)
+### [bash](index.js#L30)
 
 Returns true if `str` matches the given `pattern`.
+
+**Params**
+
+* `str` **{String}**
+* `pattern` **{String}**
+* `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
+* `returns` **{Boolean}**
 
 **Example**
 
@@ -33,16 +46,19 @@ console.log(bash('foo', 'b*'));
 //=> false
 ```
 
+<details>
+<summary><strong>.isMatch</strong></summary>
+
+### [.isMatch](index.js#L74)
+
+Returns true if `str` matches the given `pattern`. Alias for the [main export](#bash).
+
 **Params**
 
 * `str` **{String}**
 * `pattern` **{String}**
 * `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
 * `returns` **{Boolean}**
-
-### [.isMatch](index.js#L75)
-
-Returns true if `str` matches the given `pattern`. Alias for the [main export](#bash).
 
 **Example**
 
@@ -55,16 +71,21 @@ console.log(bash.isMatch('foo', 'b*'));
 //=> false
 ```
 
-**Params**
+</details>
 
-* `str` **{String}**
-* `pattern` **{String}**
-* `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
-* `returns` **{Boolean}**
+<details>
+<summary><strong>.match</strong></summary>
 
-### [.match](index.js#L96)
+### [.match](index.js#L95)
 
 Takes a `list` of strings and a glob `pattern`, and returns an array of strings that match the pattern.
+
+**Params**
+
+* `array` **{Array}**: List of strings to match
+* `pattern` **{String}**: Glob pattern
+* `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
+* `returns` **{Boolean}**
 
 **Example**
 
@@ -74,37 +95,39 @@ console.log(bash.match(['foo', 'bar'], 'b*'));
 //=> ['bar']
 ```
 
-**Params**
-
-* `array` **{Array}**: List of strings to match
-* `pattern` **{String}**: Glob pattern
-* `options` **{Options}**: Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
-* `returns` **{Boolean}**
+</details>
 
 ## About
+
+### Related projects
+
+* [bash-glob](https://www.npmjs.com/package/bash-glob): Bash-powered globbing for node.js | [homepage](https://github.com/jonschlinkert/bash-glob "Bash-powered globbing for node.js")
+* [braces](https://www.npmjs.com/package/braces): Fast, comprehensive, bash-like brace expansion implemented in JavaScript. Complete support for the Bash 4.3 braces… [more](https://github.com/micromatch/braces) | [homepage](https://github.com/micromatch/braces "Fast, comprehensive, bash-like brace expansion implemented in JavaScript. Complete support for the Bash 4.3 braces specification, without sacrificing speed.")
+* [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch. | [homepage](https://github.com/jonschlinkert/micromatch "Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch.")
+* [nanomatch](https://www.npmjs.com/package/nanomatch): Fast, minimal glob matcher for node.js. Similar to micromatch, minimatch and multimatch, but complete Bash… [more](https://github.com/jonschlinkert/nanomatch) | [homepage](https://github.com/jonschlinkert/nanomatch "Fast, minimal glob matcher for node.js. Similar to micromatch, minimatch and multimatch, but complete Bash 4.3 wildcard support only (no support for exglobs, posix brackets or braces)")
 
 ### Contributing
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
 
-Please read the [contributing guide](.github/contributing.md) for avice on opening issues, pull requests, and coding standards.
+Please read the [contributing guide](.github/contributing.md) for advice on opening issues, pull requests, and coding standards.
 
 ### Building docs
 
-_(This document was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme) (a [verb](https://github.com/verbose/verb) generator), please don't edit the readme directly. Any changes to the readme must be made in [.verb.md](.verb.md).)_
+_(This project's readme.md is generated by [verb](https://github.com/verbose/verb-generate-readme), please don't edit the readme directly. Any changes to the readme must be made in the [.verb.md](.verb.md) readme template.)_
 
-To generate the readme and API documentation with [verb](https://github.com/verbose/verb):
+To generate the readme, run the following command:
 
 ```sh
-$ npm install -g verb verb-generate-readme && verb
+$ npm install -g verbose/verb#dev verb-generate-readme && verb
 ```
 
 ### Running tests
 
-Install dev dependencies:
+Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:
 
 ```sh
-$ npm install -d && npm test
+$ npm install && npm test
 ```
 
 ### Author
@@ -112,13 +135,13 @@ $ npm install -d && npm test
 **Jon Schlinkert**
 
 * [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+* [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
 
 ### License
 
-Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
-Released under the [MIT license](https://github.com/jonschlinkert/bash-match/blob/master/LICENSE).
+Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
+Released under the [MIT License](LICENSE).
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.31, on October 17, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on April 27, 2017._

@@ -23,6 +23,7 @@ var bashPath;
  * @param {String} `pattern`
  * @param {Options} `options` Set `strictErrors` to true to throw when bash throws an error. Otherwise it just returns false.
  * @return {Boolean}
+ * @details false
  * @api public
  */
 
