@@ -1,7 +1,7 @@
 {
   "name": "bash-match",
   "description": "Match strings using bash. Does not work on windows, and does not read from the file system. This library requires that Bash 4.3 or higher is installed and is mostly used for checking parity in unit tests.",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/jonschlinkert/bash-match",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/bash-match",
